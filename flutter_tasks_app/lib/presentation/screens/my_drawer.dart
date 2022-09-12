@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../business_logic/bloc_exports.dart';
+
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
@@ -19,16 +21,31 @@ class MyDrawer extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            const ListTile(
-              leading: Icon(Icons.folder_special),
-              title: Text('My Tasks'),
-              trailing: Text('0'),
+            BlocBuilder<TaskBloc, TaskState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamed('task_screen'),
+                  child: ListTile(
+                    leading: const Icon(Icons.folder_special),
+                    title: const Text('My Tasks'),
+                    trailing: Text('${state.allTasks.length}'),
+                  ),
+                );
+              },
             ),
             const Divider(),
-            const ListTile(
-              leading: Icon(Icons.delete),
-              title: Text('Bin'),
-              trailing: Text('0'),
+            BlocBuilder<TaskBloc, TaskState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () =>
+                      Navigator.of(context).pushNamed('recyclebin_screen'),
+                  child: ListTile(
+                    leading: const Icon(Icons.delete),
+                    title: const Text('Bin'),
+                    trailing: Text('${state.removedTasks.length}'),
+                  ),
+                );
+              },
             ),
           ],
         ),
