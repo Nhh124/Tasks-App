@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../business_logic/bloc/task_bloc.dart';
+import '../../business_logic/bloc_exports.dart';
 import '../widgets/task_list.dart';
 
 class RecycleBinSCreen extends StatelessWidget {

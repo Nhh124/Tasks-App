@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tasks_app/presentation/screens/my_drawer.dart';
 
-import '../../business_logic/bloc/task_bloc.dart';
+import '../../business_logic/bloc_exports.dart';
 import '../../data/models/task.dart';
 import '../widgets/task_list.dart';
 import 'add_tasks_screen.dart';

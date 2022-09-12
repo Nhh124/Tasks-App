@@ -1,9 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:equatable/equatable.dart';
+import '../../../data/models/task.dart';
 import '/business_logic/bloc_exports.dart';
-
-import '../../data/models/task.dart';
 
 part 'task_event.dart';
 part 'task_state.dart';

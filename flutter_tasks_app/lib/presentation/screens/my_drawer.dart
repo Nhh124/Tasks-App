@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../business_logic/bloc_exports.dart';
+import '../../business_logic/blocs/switch_bloc/switch_bloc.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -24,7 +25,8 @@ class MyDrawer extends StatelessWidget {
             BlocBuilder<TaskBloc, TaskState>(
               builder: (context, state) {
                 return GestureDetector(
-                  onTap: () => Navigator.of(context).pushNamed('task_screen'),
+                  onTap: () =>
+                      Navigator.of(context).pushReplacementNamed('task_screen'),
                   child: ListTile(
                     leading: const Icon(Icons.folder_special),
                     title: const Text('My Tasks'),
@@ -37,8 +39,8 @@ class MyDrawer extends StatelessWidget {
             BlocBuilder<TaskBloc, TaskState>(
               builder: (context, state) {
                 return GestureDetector(
-                  onTap: () =>
-                      Navigator.of(context).pushNamed('recyclebin_screen'),
+                  onTap: () => Navigator.of(context)
+                      .pushReplacementNamed('recyclebin_screen'),
                   child: ListTile(
                     leading: const Icon(Icons.delete),
                     title: const Text('Bin'),
@@ -47,6 +49,19 @@ class MyDrawer extends StatelessWidget {
                 );
               },
             ),
+            BlocBuilder<SwitchBloc, SwitchState>(
+              builder: (context, state) {
+                return Switch(
+                  value: state.switchValue,
+                  onChanged: (newvalue) {
+                    newvalue
+                        ? context.read<SwitchBloc>().add(SwitchOnEvent())
+                        : context.read<SwitchBloc>().add(SwitchOffEvent());
+                    print(newvalue);
+                  },
+                );
+              },
+            )
           ],
         ),
       ),
