@@ -4,9 +4,8 @@ import '../../business_logic/bloc_exports.dart';
 import '../../data/models/task.dart';
 import '../widgets/task_list.dart';
 
-class PendingTasksScreen extends StatelessWidget {
-  const PendingTasksScreen({super.key});
-  static const routeName = 'task_screen';
+class FavoriteTasksScreen extends StatelessWidget {
+  const FavoriteTasksScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +17,7 @@ class PendingTasksScreen extends StatelessWidget {
           children: [
             Center(
               child: Chip(
-                label: Text(
-                  'Total Task pending: ${tasklist.length} | Task Completed: ${taskstate.completedTasks.length}',
-                ),
+                label: Text('Total Task: ${tasklist.length}'),
               ),
             ),
             TaskList(tasklist: tasklist),

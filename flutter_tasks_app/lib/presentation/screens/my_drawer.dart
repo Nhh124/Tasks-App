@@ -26,11 +26,12 @@ class MyDrawer extends StatelessWidget {
               builder: (context, state) {
                 return GestureDetector(
                   onTap: () =>
-                      Navigator.of(context).pushReplacementNamed('task_screen'),
+                      Navigator.of(context).pushReplacementNamed('tabs_screen'),
                   child: ListTile(
                     leading: const Icon(Icons.folder_special),
                     title: const Text('My Tasks'),
-                    trailing: Text('${state.allTasks.length}'),
+                    trailing: Text(
+                        '${state.pendingTasks.length} | ${state.completedTasks.length}'),
                   ),
                 );
               },
@@ -49,6 +50,7 @@ class MyDrawer extends StatelessWidget {
                 );
               },
             ),
+            const Divider(),
             BlocBuilder<SwitchBloc, SwitchState>(
               builder: (context, state) {
                 return Switch(
@@ -61,7 +63,7 @@ class MyDrawer extends StatelessWidget {
                   },
                 );
               },
-            )
+            ),
           ],
         ),
       ),

@@ -4,23 +4,20 @@ import '../../business_logic/bloc_exports.dart';
 import '../../data/models/task.dart';
 import '../widgets/task_list.dart';
 
-class PendingTasksScreen extends StatelessWidget {
-  const PendingTasksScreen({super.key});
-  static const routeName = 'task_screen';
+class CompleteTasksScreen extends StatelessWidget {
+  const CompleteTasksScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TaskBloc, TaskState>(
       builder: (context, taskstate) {
-        List<Task> tasklist = taskstate.pendingTasks;
+        List<Task> tasklist = taskstate.completedTasks;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
               child: Chip(
-                label: Text(
-                  'Total Task pending: ${tasklist.length} | Task Completed: ${taskstate.completedTasks.length}',
-                ),
+                label: Text('Total Task: ${taskstate.completedTasks.length}'),
               ),
             ),
             TaskList(tasklist: tasklist),
