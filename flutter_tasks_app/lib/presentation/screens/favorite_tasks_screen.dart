@@ -11,7 +11,7 @@ class FavoriteTasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TaskBloc, TaskState>(
       builder: (context, taskstate) {
-        List<Task> tasklist = taskstate.pendingTasks;
+        List<Task> tasklist = taskstate.favoriteTasks;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

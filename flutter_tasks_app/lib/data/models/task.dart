@@ -6,17 +6,23 @@ class Task extends Equatable {
   final String id;
   final String title;
   final String description;
+  final String date;
   bool? isDone;
   bool? isDelete;
+  bool? isFavorite;
+
   Task({
     required this.id,
     required this.title,
     required this.description,
+    required this.date,
     this.isDone,
     this.isDelete,
+    this.isFavorite,
   }) {
     isDone = isDone ?? false;
     isDelete = isDelete ?? false;
+    isFavorite = isFavorite ?? false;
   }
 
   @override
@@ -24,22 +30,27 @@ class Task extends Equatable {
         id,
         title,
         description,
+        date,
         isDelete,
         isDone,
+        isFavorite,
       ];
 
-  Task copyWith({
-    String? id,
-    String? title,
-    String? description,
-    bool? isDone,
-    bool? isDelete,
-  }) {
+  Task copyWith(
+      {String? id,
+      String? title,
+      String? description,
+      String? date,
+      bool? isDone,
+      bool? isDelete,
+      bool? isFavorite}) {
     return Task(
       id: id ?? this.id,
       title: title ?? this.title,
+      date: date ?? this.date,
       isDone: isDone ?? this.isDone,
       isDelete: isDelete ?? this.isDelete,
+      isFavorite: isFavorite ?? this.isFavorite,
       description: description ?? this.description,
     );
   }
@@ -49,8 +60,10 @@ class Task extends Equatable {
       'id': id,
       'title': title,
       'description': description,
+      'date': date,
       'isDone': isDone,
       'isDelete': isDelete,
+      'isFavorite': isFavorite,
     };
   }
 
@@ -59,8 +72,10 @@ class Task extends Equatable {
       id: map['id'] as String,
       title: map['title'] as String,
       description: map['description'] as String,
+      date: map['date'] as String,
       isDone: map['isDone'] != null ? map['isDone'] as bool : null,
       isDelete: map['isDelete'] != null ? map['isDelete'] as bool : null,
+      isFavorite: map['isFavorite'] != null ? map['isFavorite'] as bool : null,
     );
   }
 }

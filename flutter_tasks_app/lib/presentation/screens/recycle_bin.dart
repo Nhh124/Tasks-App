@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tasks_app/presentation/screens/my_drawer.dart';
 
 import '../../business_logic/bloc_exports.dart';
 import '../widgets/task_list.dart';
@@ -15,12 +16,23 @@ class RecycleBinSCreen extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Recycle Bin'),
             actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-              ),
+              PopupMenuButton(
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    onTap: () => context.read<TaskBloc>().add(
+                          DeleteAllTask(),
+                        ),
+                    child: TextButton.icon(
+                      onPressed: null,
+                      icon: const Icon(Icons.delete_forever),
+                      label: const Text('Delete forever'),
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
+          drawer: const MyDrawer(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
